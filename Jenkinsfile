@@ -31,6 +31,14 @@ pipeline {
             steps{
             bat 'mvn test'
             }
+            post{
+            success{
+            echo 'Pipeline executed successfully'
+            }
+                failure{
+                echo 'pipeline failed'
+                }
+            }
           
         }
         
