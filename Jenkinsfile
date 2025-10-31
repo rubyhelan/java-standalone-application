@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             // write your logic here
             steps{
-            git url:'https://github.com/rubyhelan/java-standalone-application.git',branch:'main'
+            git url:'https://github.com/rubyhelan/java-standalone-application.git',branch:'rubyhelan:feature/jenkin'
             }
             
         }
