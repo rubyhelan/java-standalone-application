@@ -17,13 +17,13 @@ pipeline {
         stage('Build') {
             // write your logic here
              steps{
-            bat 'mvn clean install'
+            bat 'mvn clean compile'
             }
         }
         stage('Run Application') {
             // write your logic here
             steps{
-            bat 'mvn exec:java -Dexec.mainClass="com.example.Main"'
+            bat 'start /B java -jar target\\java-standalone-application.jar'
             }
         }
         stage('Test') {
@@ -31,17 +31,21 @@ pipeline {
             steps{
             bat 'mvn test'
             }
-        
-          
+                 
         }
+      stage('Post Message'){
+      steps{
+      echo 'Build and test completed successfully!'
+      }
+      }
         
     }
-        post{
-            success{
+ post{
+      success{
             echo 'Pipeline executed successfully'
             }
-                failure{
-                echo 'pipeline failed'
+     failure{
+            echo 'pipeline failed'
                 }
             }
 }
