@@ -22,15 +22,17 @@ pipeline {
         }
         stage('Run Application') {
             // write your logic here
+            steps{
             bat 'mvn exec:java -Dexec.mainClass="com.example.Main"'
+            }
         }
         stage('Test') {
             // write your logic here
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
+            steps{
+            bat 'mvn test'
             }
+          
         }
+        
     }
 }
