@@ -9,12 +9,20 @@ pipeline {
     stages {
         stage('Checkout') {
             // write your logic here
+            steps{
+            git url:'https://github.com/rubyhelan/java-standalone-application.git',branch:'main'
+            }
+            
         }
         stage('Build') {
             // write your logic here
+             steps{
+            bat 'mvn clean compile'
+            }
         }
         stage('Run Application') {
             // write your logic here
+            bat 'mvn exec:java -Dexec.mainClass="com.example.Main"'
         }
         stage('Test') {
             // write your logic here
